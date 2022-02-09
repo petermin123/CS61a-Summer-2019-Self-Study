@@ -14,7 +14,12 @@ def falling(n, k):
     >>> falling(4, 1)  # 4
     4
     """
-    "*** YOUR CODE HERE ***"
+    result = 1
+    while k > 0:
+        result = n * result
+        k -= 1
+        n -= 1
+    return result
 
 def double_eights(n):
     """Return true if n has two eights in a row.
@@ -31,4 +36,16 @@ def double_eights(n):
     >>> double_eights(80808080)
     False
     """
-    "*** YOUR CODE HERE ***"
+    marker = 0
+    while n != 0:
+        d = n % 10
+        n = n // 10
+        # This makes sure we are only comparing each round w/ previous round, aka two eights in a row
+        if d == 8 and marker == 1:
+            return True
+        # Set marker to 1 if this round has a remainder of 8
+        elif d == 8:
+            marker = 1
+        else:
+            marker = 0
+    return False
